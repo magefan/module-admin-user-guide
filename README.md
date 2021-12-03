@@ -16,7 +16,7 @@ This Magento 2 Admin User Guide module allows you to add user guide links in adm
   
 
 ## Installation Method 2 - Installing using archive
-  * Download [ZIP Archive](https://github.com/magefan/module-admin-user-guide/archive/master.zip)
+  * Download [ZIP Archive](https://github.com/magefan/module-admin-user-guide/archive/refs/heads/main.zip)
   * Extract files
   * In your Magento 2 root directory create folder app/code/Magefan/AdminUserGuide
   * Copy files and folders from archive to that folder
