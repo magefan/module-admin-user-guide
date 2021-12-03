@@ -3,7 +3,7 @@
 [![Total Downloads](https://poser.pugx.org/magefan/module-admin-user-guide/downloads)](https://packagist.org/packages/magefan/module-admin-user-guide)
 [![Latest Stable Version](https://poser.pugx.org/magefan/module-admin-user-guide/v/stable)](https://packagist.org/packages/magefan/module-admin-user-guide)
 
-This Magento 2 Admin User Guide module allows you to add user guide links in admin panel to improve admin experience.
+This Magento 2 Admin User Guide module adds guide links in admin panel to improve admin experience.
 
 ## Requirements
   * Magento Community Edition 2.1.x-2.4.x or Magento Enterprise Edition 2.1.x-2.4.x
