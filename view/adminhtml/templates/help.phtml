@@ -1,0 +1,132 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+?>
+<?php
+/**
+ * Help template
+ *
+ * @var $block \Magefan\AdminUserGuide\Block\Adminhtml\Help
+ */
+?>
+<?php
+$pageHelp = $block->getPageHelp();
+?>
+<?php if ($pageHelp) { ?>
+    <div id="magefan_help_container">
+        <div title="<?= $block->escapeHtml(__('Admin User Guide Configuration')) ?>" id="magefan_show_help"></div>
+        <div id="magefan_aug" style="display: none">
+            <ul>
+                <?php foreach ($pageHelp as $question) { ?>
+                    <?php foreach ($question['links'] as $link) { ?>
+                        <li><a title="<?= $block->escapeHtml(__($question['title'])); ?>" href="<?= $block->escapeHtml(__($link)); ?>" target="_blank" rel="nofollow noopener"><?= $block->escapeHtml(__($question['title'])); ?></a></li>
+                        <?php break; ?>
+                    <?php } ?>
+                <?php } ?>
+            </ul>
+
+            <a title="<?= $block->escapeHtml(__('Admin User Guide Configuration')) ?>" class="config_link" href="<?= $block->escapeHtml($block->getUrl('adminhtml/system_config/edit', ['section' => 'mfadminuserguide'])) ?>">
+                <span class="icon"></span>
+            </a>
+        </div>
+    </div>
+    <script>
+        require(['jquery', 'domReady!'], function($){
+            $('#magefan_show_help').click(function() {
+                $('#magefan_aug').toggle();
+            });
+        });
+    </script>
+    <style>
+        #magefan_help_container {position: fixed;right: 20px;bottom: 20px;z-index: 99999;}
+        #magefan_show_help {cursor:pointer; display: block;width: 50px;height: 50px;border-radius: 50%;
+            border: 5px solid #FF6625;font-weight: 900;font-size: 30px;line-height: 1;border: none;
+            background: #ffffff url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiA8dGl0bGUvPgoKIDxnPgogIDx0aXRsZT5iYWNrZ3JvdW5kPC90aXRsZT4KICA8cmVjdCBmaWxsPSJub25lIiBpZD0iY2FudmFzX2JhY2tncm91bmQiIGhlaWdodD0iNDAyIiB3aWR0aD0iNTgyIiB5PSItMSIgeD0iLTEiLz4KIDwvZz4KIDxnPgogIDx0aXRsZT5MYXllciAxPC90aXRsZT4KICA8cGF0aCBmaWxsPSIjNGE0NTQyIiBpZD0iT3ZhbCAzMTgiIGQ9Im02Ljg3OTY4LDExLjA1OTFsMCwxLjk0MDlsMi4zNTEwOSwwbDAsLTEuOTQwOWwtMi4zNTEwOSwwem0xLjEyMDMyLDQuOTQwOWMtNC40MTgyOCwwIC04LC0zLjU4MTcyIC04LC04YzAsLTQuNDE4MjggMy41ODE3MiwtOCA4LC04YzQuNDE4MjgsMCA4LDMuNTgxNzIgOCw4YzAsNC40MTgyOCAtMy41ODE3Miw4IC04LDh6bS0yLjQyOTk4LC0xMi40ODk1OWMtMC45ODM1NywwLjUzMjggLTEuNTA2OSwxLjQzNzIgLTEuNTcwMDIsMi43MTMyM2wyLjI4MDA4LDBjMCwtMC4zNzE2MiAwLjEyNzU1LC0wLjcyOTc5IDAuMzgyNjQsLTEuMDc0NTVjMC4yNTUxLC0wLjM0NDc1IDAuNjg3NywtMC41MTcxMiAxLjI5NzgzLC0wLjUxNzEyYzAuNjIwNjUsMCAxLjA0OCwwLjEzOTkxIDEuMjgyMDUsMC40MTk3NGMwLjIzNDA2LDAuMjc5ODMgMC4zNTEwOSwwLjU4OTg4IDAuMzUxMDksMC45MzAxNmMwLDAuMjk1NSAtMC4xMDUxOSwwLjU2NjM3IC0wLjMxNTU4LDAuODEyNjJsLTAuNDU3NiwwLjM5NjI0bC0wLjU3NTkzLDAuMzgyODFjLTAuNTY4MDUsMC4zNzYwOSAtMC45MjA0NSwwLjcwODUzIC0xLjA1NzIsMC45OTczMWMtMC4xMzY3NiwwLjI4ODc5IC0wLjIyMDkxLDAuODExNTEgLTAuMjUyNDcsMS41NjgxN2wyLjEzMDE4LDBjMC4wMDUyNiwtMC4zNTgxOCAwLjAzOTQ1LC0wLjYyMjM0IDAuMTAyNTYsLTAuNzkyNDhjMC4wOTk5NCwtMC4yNjg2NCAwLjMwMjQzLC0wLjUwMzY5IDAuNjA3NSwtMC43MDUxN2wwLjU2MDE2LC0wLjM2OTM3YzAuNTY4MDUsLTAuMzc2MSAwLjk1MiwtMC42ODUwMyAxLjE1MTg3LC0wLjkyNjhjMC4zNDE4OCwtMC4zOTg0OCAwLjUxMjgyLC0wLjg4ODc0IDAuNTEyODIsLTEuNDcwNzljMCwtMC45NDkxOCAtMC4zOTMxNiwtMS42NjU1NCAtMS4xNzk0OSwtMi4xNDkwOWMtMC43ODYzMywtMC40ODM1NSAtMS43NzM4MiwtMC43MjUzMiAtMi45NjI1MiwtMC43MjUzMmMtMC45MDQ2NywwIC0xLjY2NzMyLDAuMTcwMTQgLTIuMjg3OTcsMC41MTA0MXptMCwwIi8+CiA8L2c+Cjwvc3ZnPg==);background-repeat: no-repeat;background-size: cover;}
+        #magefan_show_help:hover {-webkit-box-shadow: 0 0 8px 2px rgba(0,0,0,.3);-moz-box-shadow: 0 0 8px 2px rgba(0,0,0,.3);box-shadow: box-shadow: 0 0 8px 2px rgba(0,0,0,.3);}
+
+        /* aug */
+        #magefan_aug {position: absolute;bottom: 125%;bottom: 75px;right: 10px;z-index: 1;padding: 15px 15px 15px 40px;background: #fff;border: 1px solid #ddd;max-height: 70vh;max-width: 400px;width: 400px;line-height: 22px;}
+        #magefan_aug .config_link {float: right;color: #41362f;}
+        #magefan_aug .config_link .icon {width: 10px;height: 10px;display: inline-block;margin-right: 5px;
+            background: url(data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJjb2ciIGNsYXNzPSJzdmctaW5saW5lLS1mYSBmYS1jb2cgZmEtdy0xNiIgcm9sZT0iaW1nIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Ik00ODcuNCAzMTUuN2wtNDIuNi0yNC42YzQuMy0yMy4yIDQuMy00NyAwLTcwLjJsNDIuNi0yNC42YzQuOS0yLjggNy4xLTguNiA1LjUtMTQtMTEuMS0zNS42LTMwLTY3LjgtNTQuNy05NC42LTMuOC00LjEtMTAtNS4xLTE0LjgtMi4zTDM4MC44IDExMGMtMTcuOS0xNS40LTM4LjUtMjcuMy02MC44LTM1LjFWMjUuOGMwLTUuNi0zLjktMTAuNS05LjQtMTEuNy0zNi43LTguMi03NC4zLTcuOC0xMDkuMiAwLTUuNSAxLjItOS40IDYuMS05LjQgMTEuN1Y3NWMtMjIuMiA3LjktNDIuOCAxOS44LTYwLjggMzUuMUw4OC43IDg1LjVjLTQuOS0yLjgtMTEtMS45LTE0LjggMi4zLTI0LjcgMjYuNy00My42IDU4LjktNTQuNyA5NC42LTEuNyA1LjQuNiAxMS4yIDUuNSAxNEw2Ny4zIDIyMWMtNC4zIDIzLjItNC4zIDQ3IDAgNzAuMmwtNDIuNiAyNC42Yy00LjkgMi44LTcuMSA4LjYtNS41IDE0IDExLjEgMzUuNiAzMCA2Ny44IDU0LjcgOTQuNiAzLjggNC4xIDEwIDUuMSAxNC44IDIuM2w0Mi42LTI0LjZjMTcuOSAxNS40IDM4LjUgMjcuMyA2MC44IDM1LjF2NDkuMmMwIDUuNiAzLjkgMTAuNSA5LjQgMTEuNyAzNi43IDguMiA3NC4zIDcuOCAxMDkuMiAwIDUuNS0xLjIgOS40LTYuMSA5LjQtMTEuN3YtNDkuMmMyMi4yLTcuOSA0Mi44LTE5LjggNjAuOC0zNS4xbDQyLjYgMjQuNmM0LjkgMi44IDExIDEuOSAxNC44LTIuMyAyNC43LTI2LjcgNDMuNi01OC45IDU0LjctOTQuNiAxLjUtNS41LS43LTExLjMtNS42LTE0LjF6TTI1NiAzMzZjLTQ0LjEgMC04MC0zNS45LTgwLTgwczM1LjktODAgODAtODAgODAgMzUuOSA4MCA4MC0zNS45IDgwLTgwIDgweiI+PC9wYXRoPjwvc3ZnPg==);}
+        #magefan_aug:before {content: "";position: absolute;top: 100%;right: 5px;border-width: 9px;border-style: solid;border-color: #dddddd transparent transparent transparent;z-index: 1;}
+        #magefan_aug:after {content: "";position: absolute;top: 100%;right: 5px;border-width: 9px;border-style: solid;border-color: #ffffff transparent transparent transparent;transform: translateY(-1px);z-index: 2;}
+        #magefan_aug ul {margin-top: 0; padding-left: 0; /*max-height: 400px; overflow-y: scroll;*/}
+        #magefan_aug ul li {padding-bottom: 5px}
+        /* Animation */
+        #magefan_show_help {
+            -webkit-animation: rotate 30s linear;-moz-animation: rotate 30s linear;animation: rotate 30s linear;
+        }
+        @keyframes rotate {
+            0% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            10% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            20% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            30% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            40% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            50% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            60% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            70% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            80% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            90% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            100% {-webkit-transform: rotateY(-360deg);-o-transform: rotateY(-360deg);transform: rotateY(-360deg);
+            }
+        }
+        @-webkit-keyframes rotate {
+            0% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+
+            }
+            10% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            20% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            30% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            40% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            50% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            60% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            70% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            80% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            90% {
+                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+            }
+            100% {-webkit-transform: rotateY(-360deg);-o-transform: rotateY(-360deg);transform: rotateY(-360deg);
+            }
+        }
+    </style>
+<?php }?>

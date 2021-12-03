@@ -1,1 +1,1 @@
-# module-admin-user-guide
+AdminUserGuide
