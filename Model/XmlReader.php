@@ -108,8 +108,12 @@ class XmlReader
     public function update()
     {
         $fileUrl = 'https://' . 'mage' . 'fan.com' .'/media/knowledge-base.xml';
-        $this->curl->get($fileUrl);
-        $contents = $this->curl->getBody();
+        try {
+            $this->curl->get($fileUrl);
+            $contents = $this->curl->getBody();
+        } catch (\Exception $e) {
+            $contents = null;
+        }
         if ($contents) {
             $media = $this->filesystem->getDirectoryWrite(DirectoryList::VAR_DIR);
             $media->writeFile(self::DATA_FILE_NAME, $contents);
