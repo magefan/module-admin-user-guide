@@ -3,6 +3,8 @@
 [![Total Downloads](https://poser.pugx.org/magefan/module-admin-user-guide/downloads)](https://packagist.org/packages/magefan/module-admin-user-guide)
 [![Latest Stable Version](https://poser.pugx.org/magefan/module-admin-user-guide/v/stable)](https://packagist.org/packages/magefan/module-admin-user-guide)
 
+<a href="https://www.comebackalive.in.ua/donate"><img width="830" height="208" src="https://cm.magefan.com/blog/support-ukraine.png"></a>
+
 <img width="150" height="100" src="https://magefan.com/media/wysiwyg/made_in_ukraine.jpg">
 
 This Magento 2 Admin User Guide module adds guide links in admin panel to improve admin experience.
