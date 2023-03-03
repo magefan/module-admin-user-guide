@@ -2,7 +2,7 @@
     "name": "magefan/module-admin-user-guide",
     "description": "Admin panel user guides.",
     "type": "magento2-module",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "autoload": {
         "files": [ "registration.php" ],
         "psr-4": {
