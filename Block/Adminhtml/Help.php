@@ -55,55 +55,56 @@ class Help extends \Magento\Framework\View\Element\Template
     public function getPageHelp()
     {
         $data = [];
+        if (!$this->authorization->isAllowed('Magefan_AdminUserGuide::help')) {
+            return $data;
+        }
 
-        if ($this->authorization->isAllowed('Magefan_AdminUserGuide::help')) {
-            if ($this->config->isEnabled()) {
-                $guideData = $this->xmlReader->get();
+        if ($this->config->isEnabled()) {
+            $guideData = $this->xmlReader->get();
 
-                $fullActionName = str_replace('_', '-', $this->getRequest()->getFullActionName());
-                $secondActionName = $fullActionName;
+            $fullActionName = str_replace('_', '-', $this->getRequest()->getFullActionName());
+            $secondActionName = $fullActionName;
 
-                if ('adminhtml-system-config-edit' == $secondActionName) {
-                    $secondActionName .= '-section-' . $this->getRequest()->getParam('section');
-                }
+            if ('adminhtml-system-config-edit' == $secondActionName) {
+                $secondActionName .= '-section-' . $this->getRequest()->getParam('section');
+            }
 
-                $data = [];
-                if ($guideData) {
-                    foreach ($guideData as $item) {
-                        if (empty($item['class']) || empty($item['title'])) {
-                            continue;
-                        }
+            $data = [];
+            if ($guideData) {
+                foreach ($guideData as $item) {
+                    if (empty($item['class']) || empty($item['title'])) {
+                        continue;
+                    }
 
-                        $classes = explode(' ', $item['class']);
-                        if (in_array($fullActionName, $classes)
-                            || in_array($secondActionName, $classes)
-                        ) {
-                            $links = [];
-                            for ($i = 0; $i <= count($item) - 2; $i++) {
-                                if ($i == 0) {
-                                    if (isset($item['link'])) {
-                                        $links[] = $item['link'];
-                                    }
-                                    $i++;
-                                } else {
-                                    if (isset($item['link' . $i])) {
-                                        $links[] = $item['link' . $i];
-                                    }
+                    $classes = explode(' ', $item['class']);
+                    if (in_array($fullActionName, $classes)
+                        || in_array($secondActionName, $classes)
+                    ) {
+                        $links = [];
+                        for ($i = 0; $i <= count($item) - 2; $i++) {
+                            if ($i == 0) {
+                                if (isset($item['link'])) {
+                                    $links[] = $item['link'];
+                                }
+                                $i++;
+                            } else {
+                                if (isset($item['link' . $i])) {
+                                    $links[] = $item['link' . $i];
                                 }
                             }
-
-                            if (!count($links)) {
-                                continue;
-                            }
-                            $data[] = [
-                                'title' => $item['title'],
-                                'links' => $links
-                            ];
                         }
+
+                        if (!count($links)) {
+                            continue;
+                        }
+                        $data[] = [
+                            'title' => $item['title'],
+                            'links' => $links
+                        ];
                     }
                 }
-
             }
+
         }
         return $data;
     }
