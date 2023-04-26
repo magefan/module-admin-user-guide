@@ -16,7 +16,7 @@ $pageHelp = $block->getPageHelp();
 ?>
 <?php if ($pageHelp) { ?>
     <div id="magefan_help_container">
-        <div title="<?= $block->escapeHtml(__('Admin User Guide Configuration')) ?>" id="magefan_show_help"></div>
+        <div title="<?= $block->escapeHtml(__('Admin Guide')) ?>" id="magefan_show_help"></div>
         <div id="magefan_aug" style="display: none">
             <ul>
                 <?php foreach ($pageHelp as $question) { ?>
@@ -27,7 +27,7 @@ $pageHelp = $block->getPageHelp();
                 <?php } ?>
             </ul>
 
-            <a title="<?= $block->escapeHtml(__('Admin User Guide Configuration')) ?>" class="config_link" href="<?= $block->escapeHtml($block->getUrl('adminhtml/system_config/edit', ['section' => 'mfadminuserguide'])) ?>">
+            <a title="<?= $block->escapeHtml(__('Admin Guide Configuration')) ?>" class="config_link" href="<?= $block->escapeHtml($block->getUrl('adminhtml/system_config/edit', ['section' => 'mfadminuserguide'])) ?>">
                 <span class="icon"></span>
             </a>
         </div>
