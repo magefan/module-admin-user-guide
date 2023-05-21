@@ -8,6 +8,7 @@ namespace Magefan\AdminUserGuide\Block\Adminhtml;
 use Magento\Framework\View\Element\Template;
 use Magefan\AdminUserGuide\Model\XmlReader;
 use Magefan\AdminUserGuide\Model\Config;
+use Magento\Framework\AuthorizationInterface;
 
 class Help extends \Magento\Framework\View\Element\Template
 {
@@ -22,20 +23,29 @@ class Help extends \Magento\Framework\View\Element\Template
     private $config;
 
     /**
+     * @var AuthorizationInterface
+     */
+    private $authorization;
+
+    /**
+     * Help constructor.
      * @param Template\Context $context
      * @param XmlReader $xmlReader
      * @param Config $config
+     * @param AuthorizationInterface $authorization
      * @param array $data
      */
     public function __construct(
         Template\Context $context,
         XmlReader $xmlReader,
         Config $config,
+        AuthorizationInterface $authorization,
         array $data = []
     ) {
         parent::__construct($context, $data);
         $this->xmlReader = $xmlReader;
         $this->config = $config;
+        $this->authorization = $authorization;
     }
 
     /**
@@ -45,6 +55,9 @@ class Help extends \Magento\Framework\View\Element\Template
     public function getPageHelp()
     {
         $data = [];
+        if (!$this->authorization->isAllowed('Magefan_AdminUserGuide::help')) {
+            return $data;
+        }
 
         if ($this->config->isEnabled()) {
             $guideData = $this->xmlReader->get();

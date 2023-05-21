@@ -16,6 +16,7 @@
                         </resource>
                     </resource>
                 </resource>
+                <resource id="Magefan_AdminUserGuide::help" title="Magefan Help Button" translate="title" sortOrder="30" />
             </resource>
         </resources>
     </acl>
