@@ -9,6 +9,7 @@
  * Help template
  *
  * @var $block \Magefan\AdminUserGuide\Block\Adminhtml\Help
+ * @var $mfSecureRenderer \Magefan\Community\Api\SecureHtmlRendererInterface
  */
 ?>
 <?php
@@ -32,13 +33,14 @@ $pageHelp = $block->getPageHelp();
             </a>
         </div>
     </div>
-    <script>
+    <?php $script = "
         require(['jquery', 'domReady!'], function($){
             $('#magefan_show_help').click(function() {
                 $('#magefan_aug').toggle();
             });
         });
-    </script>
+    "; ?>
+    <?= /* @noEscape */ $mfSecureRenderer->renderTag('script', [], $script, false) ?>
     <style>
         #magefan_help_container {position: fixed;right: 20px;bottom: 20px;z-index: 99999;}
         #magefan_show_help {cursor:pointer; display: block;width: 50px;height: 50px;border-radius: 50%;
