@@ -97,6 +97,17 @@ class Help extends \Magento\Framework\View\Element\Template
                         if (!count($links)) {
                             continue;
                         }
+
+                        foreach ($links as $klink => $link) {
+                            if (false !== strpos($link, 'magefan.com') && false === strpos($link, 'utm_source')) {
+                                $linkInfo = explode('#', $link);
+                                $linkInfo[0] .= (false !== strpos($linkInfo[0], '?')) ? '&' : '?';
+                                $linkInfo[0] .= 'utm_source=admin&utm_medium=admin-user-guide&utm_campaign=admin-user-guide';
+                                $link = implode('#', $linkInfo);
+                                $links[$klink] = $link;
+                            }
+                        }
+
                         $data[] = [
                             'title' => $item['title'],
                             'links' => $links
