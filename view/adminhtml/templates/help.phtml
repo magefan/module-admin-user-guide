@@ -17,20 +17,49 @@ $pageHelp = $block->getPageHelp();
 ?>
 <?php if ($pageHelp) { ?>
     <div id="magefan_help_container">
-        <div title="<?= $block->escapeHtml(__('Admin Guide')) ?>" id="magefan_show_help"></div>
-        <div id="magefan_aug" style="display: none">
-            <ul>
-                <?php foreach ($pageHelp as $question) { ?>
-                    <?php foreach ($question['links'] as $link) { ?>
-                        <li><a title="<?= $block->escapeHtml(__($question['title'])); ?>" href="<?= $block->escapeHtml(__($link)); ?>" target="_blank" rel="nofollow noopener"><?= $block->escapeHtml(__($question['title'])); ?></a></li>
-                        <?php break; ?>
-                    <?php } ?>
-                <?php } ?>
-            </ul>
+        <div title="<?= $block->escapeHtml(__('Admin Guide')) ?>" id="magefan_show_help">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M15 3.4375C8.61421 3.4375 3.4375 8.61421 3.4375 15C3.4375 21.3857 8.61421 26.5625 15 26.5625C21.3857 26.5625 26.5625 21.3857 26.5625 15C26.5625 8.61421 21.3857 3.4375 15 3.4375ZM1.5625 15C1.5625 7.57868 7.57868 1.5625 15 1.5625C22.4214 1.5625 28.4375 7.57868 28.4375 15C28.4375 22.4214 22.4214 28.4375 15 28.4375C7.57868 28.4375 1.5625 22.4214 1.5625 15Z" fill="white"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M15 10.3125C13.7919 10.3125 12.8125 11.2919 12.8125 12.5H10.9375C10.9375 10.2563 12.7564 8.4375 15 8.4375C17.2436 8.4375 19.0625 10.2563 19.0625 12.5C19.0625 14.421 17.7292 16.0306 15.9375 16.4538V18.125H14.0625V14.6875H15C16.2081 14.6875 17.1875 13.7081 17.1875 12.5C17.1875 11.2919 16.2081 10.3125 15 10.3125ZM14.0625 21.875V20H15.9375V21.875H14.0625Z" fill="white"/>
+            </svg>
+        </div>
 
-            <a title="<?= $block->escapeHtml(__('Admin Guide Configuration')) ?>" class="config_link" href="<?= $block->escapeHtml($block->getUrl('adminhtml/system_config/edit', ['section' => 'mfadminuserguide'])) ?>">
-                <span class="icon"></span>
-            </a>
+        <div id="magefan_aug" style="display: none">
+            <div class="magefan-aug-header">Admin Guide</div>
+            <div class="magefan-aug-content">
+                <ul>
+                    <?php foreach ($pageHelp as $question) { ?>
+                        <?php foreach ($question['links'] as $link) { ?>
+                            <li>
+                                <div class="icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <g clip-path="url(#clip0_14819_9754)">
+                                            <path d="M11.5555 16H2.66665C1.95431 16 1.28467 15.7226 0.781023 15.2189C0.277378 14.7152 0 14.0456 0 13.3333V4.44444C0 3.73213 0.277409 3.06249 0.781054 2.55884C1.2847 2.0552 1.95434 1.77779 2.66668 1.77779H6.22223C6.71317 1.77779 7.11112 2.17574 7.11112 2.66668C7.11112 3.15763 6.71317 3.55558 6.22223 3.55558H2.66665C2.4292 3.55558 2.20601 3.64805 2.03815 3.81591C1.87029 3.98377 1.77779 4.20699 1.77779 4.44444V13.3333C1.77779 13.5708 1.87026 13.794 2.03815 13.9619C2.20601 14.1297 2.4292 14.2222 2.66665 14.2222H11.5555C11.7929 14.2222 12.0161 14.1297 12.184 13.9618C12.3519 13.794 12.4444 13.5707 12.4444 13.3333V9.77777C12.4444 9.28683 12.8423 8.88891 13.3333 8.88891C13.8242 8.88891 14.2222 9.28686 14.2222 9.77777V13.3333C14.2222 14.0456 13.9448 14.7152 13.4411 15.2189C12.9374 15.7226 12.2678 16 11.5555 16ZM6.22223 10.6666C5.99472 10.6666 5.76724 10.5799 5.5937 10.4063C5.24658 10.0592 5.24658 9.49633 5.5937 9.14921L12.9651 1.77779H9.77777C9.28683 1.77779 8.88891 1.37984 8.88891 0.888894C8.88891 0.397948 9.28683 0 9.77777 0H15.1111C15.234 0 15.3511 0.0249649 15.4576 0.0700819C15.557 0.112125 15.6504 0.173047 15.732 0.252878L15.7321 0.252941C15.7327 0.253531 15.7333 0.254089 15.7338 0.254679C15.734 0.254835 15.7342 0.255021 15.7344 0.255176C15.7348 0.255611 15.7353 0.256077 15.7357 0.256543C15.736 0.256853 15.7363 0.257132 15.7366 0.257443C15.737 0.257785 15.7373 0.258157 15.7376 0.258437C15.7382 0.259058 15.7389 0.25971 15.7395 0.260362C15.7402 0.260983 15.7408 0.261666 15.7415 0.262287C15.7418 0.262597 15.7422 0.263001 15.7424 0.263281C15.7428 0.263591 15.743 0.263871 15.7433 0.264181C15.7438 0.264647 15.7443 0.265082 15.7447 0.265578C15.7449 0.265703 15.7451 0.26592 15.7452 0.266075C15.7458 0.266665 15.7464 0.267255 15.7469 0.267845L15.747 0.267907C15.8268 0.349633 15.8878 0.442972 15.9298 0.542335C15.9749 0.64884 15.9999 0.765901 15.9999 0.888863V6.2222C15.9999 6.71314 15.6019 7.11109 15.111 7.11109C14.62 7.11109 14.2221 6.71314 14.2221 6.2222V3.03488L6.8506 10.4063C6.67719 10.5799 6.44971 10.6666 6.22223 10.6666Z" fill="#DA5D28"/>
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_14819_9754">
+                                                <rect width="16" height="16" fill="white"/>
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <a title="<?= $block->escapeHtml(__($question['title'])); ?>" href="<?= $block->escapeHtml(__($link)); ?>" target="_blank" rel="nofollow noopener"><?= $block->escapeHtml(__($question['title'])); ?></a>
+                            </li>
+                            <?php break; ?>
+                        <?php } ?>
+                    <?php } ?>
+                </ul>
+            </div>
+            <div class="magefan-aug-footer">
+                <a title="<?= $block->escapeHtml(__('Admin Guide Configuration')) ?>" class="config_link" href="<?= $block->escapeHtml($block->getUrl('adminhtml/system_config/edit', ['section' => 'mfadminuserguide'])) ?>">
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M26.9441 17.9076L25.9457 17.0857C25.2618 16.5227 25.263 15.4762 25.9457 14.9143L26.9441 14.0924C27.6546 13.5075 27.8363 12.5044 27.3762 11.7073L25.4047 8.29267C24.9445 7.49561 23.9848 7.15155 23.1231 7.47433L21.9121 7.92803C21.0826 8.23872 20.177 7.7147 20.0316 6.84236L19.8191 5.5667C19.6677 4.65892 18.89 4 17.9696 4H14.0267C13.1063 4 12.3285 4.65892 12.1772 5.56675L11.9646 6.84236C11.819 7.71625 10.9121 8.2382 10.0842 7.92808L8.87314 7.47433C8.01144 7.15155 7.05181 7.49566 6.59155 8.29267L4.62012 11.7073C4.15995 12.5043 4.34164 13.5074 5.05222 14.0924L6.05061 14.9143C6.73461 15.4773 6.73325 16.5237 6.05061 17.0856L5.05217 17.9075C4.34164 18.4925 4.15991 19.4956 4.62008 20.2926L6.59155 23.7073C7.05176 24.5043 8.0112 24.8484 8.87314 24.5256L10.0841 24.0719C10.9137 23.7611 11.8192 24.2855 11.9645 25.1576L12.1772 26.4332C12.3285 27.3411 13.1063 28 14.0267 28H17.9696C18.8899 28 19.6677 27.3411 19.819 26.4333L20.0316 25.1577C20.1772 24.284 21.084 23.7617 21.9121 24.072L23.1231 24.5257C23.985 24.8485 24.9445 24.5044 25.4047 23.7073L27.3762 20.2926C27.8363 19.4956 27.6546 18.4925 26.9441 17.9076ZM23.7809 22.7698L22.5699 22.3161C20.634 21.5909 18.5213 22.8144 18.1822 24.8494L17.9696 26.125H14.0267L13.8141 24.8494C13.4743 22.8105 11.3585 21.5923 9.42636 22.3161L8.21534 22.7698L6.24392 19.3552L7.24231 18.5333C8.83836 17.2194 8.83503 14.7779 7.24231 13.4667L6.24392 12.6448L8.21539 9.23017L9.42636 9.68388C11.3623 10.409 13.475 9.18559 13.8141 7.15061L14.0267 5.875H17.9696L18.1821 7.15061C18.522 9.18977 20.6379 10.4075 22.5699 9.68388L23.7809 9.23017L25.7528 12.6444C25.7528 12.6444 25.7526 12.6445 25.7523 12.6448L24.7539 13.4667C23.1579 14.7805 23.1611 17.222 24.7539 18.5332L25.7523 19.3551L23.7809 22.7698ZM15.9981 11.375C13.4479 11.375 11.3731 13.4498 11.3731 16C11.3731 18.5502 13.4479 20.625 15.9981 20.625C18.5484 20.625 20.6232 18.5502 20.6232 16C20.6232 13.4498 18.5484 11.375 15.9981 11.375ZM15.9981 18.75C14.4818 18.75 13.2481 17.5164 13.2481 16C13.2481 14.4836 14.4818 13.25 15.9981 13.25C17.5145 13.25 18.7482 14.4836 18.7482 16C18.7482 17.5164 17.5145 18.75 15.9981 18.75Z" fill="currentColor" />
+                        </svg>
+                    </span>
+                    <span>Admin Guide Configuration</span>
+                </a>
+            </div>
         </div>
     </div>
     <?php $script = "
@@ -42,93 +71,99 @@ $pageHelp = $block->getPageHelp();
     "; ?>
     <?= /* @noEscape */ $mfSecureRenderer->renderTag('script', [], $script, false) ?>
     <style>
-        #magefan_help_container {position: fixed;right: 20px;bottom: 20px;z-index: 99999;}
-        #magefan_show_help {cursor:pointer; display: block;width: 50px;height: 50px;border-radius: 50%;
-            border: 5px solid #FF6625;font-weight: 900;font-size: 30px;line-height: 1;border: none;
-            background: #ffffff url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiA8dGl0bGUvPgoKIDxnPgogIDx0aXRsZT5iYWNrZ3JvdW5kPC90aXRsZT4KICA8cmVjdCBmaWxsPSJub25lIiBpZD0iY2FudmFzX2JhY2tncm91bmQiIGhlaWdodD0iNDAyIiB3aWR0aD0iNTgyIiB5PSItMSIgeD0iLTEiLz4KIDwvZz4KIDxnPgogIDx0aXRsZT5MYXllciAxPC90aXRsZT4KICA8cGF0aCBmaWxsPSIjNGE0NTQyIiBpZD0iT3ZhbCAzMTgiIGQ9Im02Ljg3OTY4LDExLjA1OTFsMCwxLjk0MDlsMi4zNTEwOSwwbDAsLTEuOTQwOWwtMi4zNTEwOSwwem0xLjEyMDMyLDQuOTQwOWMtNC40MTgyOCwwIC04LC0zLjU4MTcyIC04LC04YzAsLTQuNDE4MjggMy41ODE3MiwtOCA4LC04YzQuNDE4MjgsMCA4LDMuNTgxNzIgOCw4YzAsNC40MTgyOCAtMy41ODE3Miw4IC04LDh6bS0yLjQyOTk4LC0xMi40ODk1OWMtMC45ODM1NywwLjUzMjggLTEuNTA2OSwxLjQzNzIgLTEuNTcwMDIsMi43MTMyM2wyLjI4MDA4LDBjMCwtMC4zNzE2MiAwLjEyNzU1LC0wLjcyOTc5IDAuMzgyNjQsLTEuMDc0NTVjMC4yNTUxLC0wLjM0NDc1IDAuNjg3NywtMC41MTcxMiAxLjI5NzgzLC0wLjUxNzEyYzAuNjIwNjUsMCAxLjA0OCwwLjEzOTkxIDEuMjgyMDUsMC40MTk3NGMwLjIzNDA2LDAuMjc5ODMgMC4zNTEwOSwwLjU4OTg4IDAuMzUxMDksMC45MzAxNmMwLDAuMjk1NSAtMC4xMDUxOSwwLjU2NjM3IC0wLjMxNTU4LDAuODEyNjJsLTAuNDU3NiwwLjM5NjI0bC0wLjU3NTkzLDAuMzgyODFjLTAuNTY4MDUsMC4zNzYwOSAtMC45MjA0NSwwLjcwODUzIC0xLjA1NzIsMC45OTczMWMtMC4xMzY3NiwwLjI4ODc5IC0wLjIyMDkxLDAuODExNTEgLTAuMjUyNDcsMS41NjgxN2wyLjEzMDE4LDBjMC4wMDUyNiwtMC4zNTgxOCAwLjAzOTQ1LC0wLjYyMjM0IDAuMTAyNTYsLTAuNzkyNDhjMC4wOTk5NCwtMC4yNjg2NCAwLjMwMjQzLC0wLjUwMzY5IDAuNjA3NSwtMC43MDUxN2wwLjU2MDE2LC0wLjM2OTM3YzAuNTY4MDUsLTAuMzc2MSAwLjk1MiwtMC42ODUwMyAxLjE1MTg3LC0wLjkyNjhjMC4zNDE4OCwtMC4zOTg0OCAwLjUxMjgyLC0wLjg4ODc0IDAuNTEyODIsLTEuNDcwNzljMCwtMC45NDkxOCAtMC4zOTMxNiwtMS42NjU1NCAtMS4xNzk0OSwtMi4xNDkwOWMtMC43ODYzMywtMC40ODM1NSAtMS43NzM4MiwtMC43MjUzMiAtMi45NjI1MiwtMC43MjUzMmMtMC45MDQ2NywwIC0xLjY2NzMyLDAuMTcwMTQgLTIuMjg3OTcsMC41MTA0MXptMCwwIi8+CiA8L2c+Cjwvc3ZnPg==);background-repeat: no-repeat;background-size: cover;}
-        #magefan_show_help:hover {-webkit-box-shadow: 0 0 8px 2px rgba(0,0,0,.3);-moz-box-shadow: 0 0 8px 2px rgba(0,0,0,.3);box-shadow: box-shadow: 0 0 8px 2px rgba(0,0,0,.3);}
+		#magefan_help_container {position: fixed;right: 20px;bottom: 20px;z-index: 99999;}
+		#magefan_show_help {cursor:pointer; display: flex;align-items: center;justify-content: center;width: 48px;height: 48px;border-radius: 50%;background: #2F3045;}
+		#magefan_show_help:hover {background: #504944;}
 
-        /* aug */
-        #magefan_aug {position: absolute;bottom: 125%;bottom: 75px;right: 10px;z-index: 1;padding: 15px 15px 15px 40px;background: #fff;border: 1px solid #ddd;max-height: 70vh;max-width: 400px;width: 400px;line-height: 22px;}
-        #magefan_aug .config_link {float: right;color: #41362f;}
-        #magefan_aug .config_link .icon {width: 10px;height: 10px;display: inline-block;margin-right: 5px;
-            background: url(data:image/svg+xml;base64,PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJjb2ciIGNsYXNzPSJzdmctaW5saW5lLS1mYSBmYS1jb2cgZmEtdy0xNiIgcm9sZT0iaW1nIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Ik00ODcuNCAzMTUuN2wtNDIuNi0yNC42YzQuMy0yMy4yIDQuMy00NyAwLTcwLjJsNDIuNi0yNC42YzQuOS0yLjggNy4xLTguNiA1LjUtMTQtMTEuMS0zNS42LTMwLTY3LjgtNTQuNy05NC42LTMuOC00LjEtMTAtNS4xLTE0LjgtMi4zTDM4MC44IDExMGMtMTcuOS0xNS40LTM4LjUtMjcuMy02MC44LTM1LjFWMjUuOGMwLTUuNi0zLjktMTAuNS05LjQtMTEuNy0zNi43LTguMi03NC4zLTcuOC0xMDkuMiAwLTUuNSAxLjItOS40IDYuMS05LjQgMTEuN1Y3NWMtMjIuMiA3LjktNDIuOCAxOS44LTYwLjggMzUuMUw4OC43IDg1LjVjLTQuOS0yLjgtMTEtMS45LTE0LjggMi4zLTI0LjcgMjYuNy00My42IDU4LjktNTQuNyA5NC42LTEuNyA1LjQuNiAxMS4yIDUuNSAxNEw2Ny4zIDIyMWMtNC4zIDIzLjItNC4zIDQ3IDAgNzAuMmwtNDIuNiAyNC42Yy00LjkgMi44LTcuMSA4LjYtNS41IDE0IDExLjEgMzUuNiAzMCA2Ny44IDU0LjcgOTQuNiAzLjggNC4xIDEwIDUuMSAxNC44IDIuM2w0Mi42LTI0LjZjMTcuOSAxNS40IDM4LjUgMjcuMyA2MC44IDM1LjF2NDkuMmMwIDUuNiAzLjkgMTAuNSA5LjQgMTEuNyAzNi43IDguMiA3NC4zIDcuOCAxMDkuMiAwIDUuNS0xLjIgOS40LTYuMSA5LjQtMTEuN3YtNDkuMmMyMi4yLTcuOSA0Mi44LTE5LjggNjAuOC0zNS4xbDQyLjYgMjQuNmM0LjkgMi44IDExIDEuOSAxNC44LTIuMyAyNC43LTI2LjcgNDMuNi01OC45IDU0LjctOTQuNiAxLjUtNS41LS43LTExLjMtNS42LTE0LjF6TTI1NiAzMzZjLTQ0LjEgMC04MC0zNS45LTgwLTgwczM1LjktODAgODAtODAgODAgMzUuOSA4MCA4MC0zNS45IDgwLTgwIDgweiI+PC9wYXRoPjwvc3ZnPg==);}
-        #magefan_aug:before {content: "";position: absolute;top: 100%;right: 5px;border-width: 9px;border-style: solid;border-color: #dddddd transparent transparent transparent;z-index: 1;}
-        #magefan_aug:after {content: "";position: absolute;top: 100%;right: 5px;border-width: 9px;border-style: solid;border-color: #ffffff transparent transparent transparent;transform: translateY(-1px);z-index: 2;}
-        #magefan_aug ul {margin-top: 0; padding-left: 0; /*max-height: 400px; overflow-y: scroll;*/}
-        #magefan_aug ul li {padding-bottom: 5px}
-        /* Animation */
-        #magefan_show_help {
-            -webkit-animation: rotate 30s linear;-moz-animation: rotate 30s linear;animation: rotate 30s linear;
-        }
-        @keyframes rotate {
-            0% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            10% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            20% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            30% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            40% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            50% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            60% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            70% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            80% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            90% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            100% {-webkit-transform: rotateY(-360deg);-o-transform: rotateY(-360deg);transform: rotateY(-360deg);
-            }
-        }
-        @-webkit-keyframes rotate {
-            0% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+		/* aug */
+		#magefan_aug {position: absolute;bottom: 75px;right: 10px;z-index: 1;width: 520px;max-width: 520px;max-height: 70vh;padding: 0;background: #fff;border-radius: 9px;box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25);overflow: hidden;}
+		#magefan_aug .magefan-aug-header {font-size: 24px;font-weight: 600;padding: 22px 22px 18px;color: #141414;}
 
-            }
-            10% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            20% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            30% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            40% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            50% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            60% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            70% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            80% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            90% {
-                -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
-            }
-            100% {-webkit-transform: rotateY(-360deg);-o-transform: rotateY(-360deg);transform: rotateY(-360deg);
-            }
-        }
+		#magefan_aug .magefan-aug-content {padding: 0 22px;max-height: calc(70vh - 145px);overflow-y: auto;}
+		#magefan_aug .magefan-aug-content ul {margin: 0;padding: 0;list-style: none;}
+		#magefan_aug .magefan-aug-content ul li {padding: 0;margin-bottom: 14px;color: #141414;font-size: 16px;line-height: 20px;font-weight: 600;}
+		#magefan_aug .magefan-aug-content ul li .icon {width: 32px;height: 32px;display: flex;align-items: center;justify-content: center;margin-right: 12px;float: left;background: #fbefe9;border-radius: 50%;}
+		#magefan_aug .magefan-aug-content ul li a {color: #141414;font-size: 16px;line-height: 30px;font-weight: 600;}
+		#magefan_aug .magefan-aug-content ul li a:hover {color: #DA5D28;text-decoration: none;}
+
+		#magefan_aug .magefan-aug-footer {padding: 20px 22px;background: #F2F4F7;}
+		#magefan_aug .magefan-aug-footer .config_link {display: flex;align-items: center;font-size: 16px;line-height: 20px;font-weight: 600;color: #141414;}
+		#magefan_aug .magefan-aug-footer .config_link:hover {text-decoration: none;color: #DA5D28;}
+		#magefan_aug .magefan-aug-footer .config_link .icon {width: 32px;height: 32px;display: inline-flex;margin-right: 12px;color: #b2b2b2;}
+		#magefan_aug .magefan-aug-footer .config_link:hover .icon {color: #DA5D28;}
+
+		/* Animation */
+		#magefan_show_help {
+			-webkit-animation: rotate 30s linear;-moz-animation: rotate 30s linear;animation: rotate 30s linear;
+		}
+		@keyframes rotate {
+			0% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			10% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			20% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			30% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			40% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			50% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			60% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			70% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			80% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			90% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			100% {-webkit-transform: rotateY(-360deg);-o-transform: rotateY(-360deg);transform: rotateY(-360deg);
+			}
+		}
+		@-webkit-keyframes rotate {
+			0% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+
+			}
+			10% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			20% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			30% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			40% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			50% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			60% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			70% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			80% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			90% {
+				-webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+			}
+			100% {-webkit-transform: rotateY(-360deg);-o-transform: rotateY(-360deg);transform: rotateY(-360deg);
+			}
+		}
     </style>
 <?php }?>
