@@ -71,6 +71,10 @@ $pageHelp = $block->getPageHelp();
             $('#magefan_show_help').click(function() {
                 $('#magefan_aug').toggle();
             });
+            
+            $('.action-close').click(function() {
+                $('#magefan_aug').hide();
+            });
         });
     "; ?>
     <?= /* @noEscape */ $mfSecureRenderer->renderTag('script', [], $script, false) ?>
