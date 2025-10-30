@@ -6,6 +6,7 @@
 namespace Magefan\AdminUserGuide\Cron;
 
 use Magefan\AdminUserGuide\Model\XmlReader;
+use Magento\Framework\Exception\FileSystemException;
 
 /**
  * Class XmlReader
@@ -27,7 +28,9 @@ class XmlUpdate
     }
 
     /**
-     * @throws \Magento\Framework\Exception\FileSystemException
+     * Update xml
+     *
+     * @throws FileSystemException
      */
     public function execute()
     {
