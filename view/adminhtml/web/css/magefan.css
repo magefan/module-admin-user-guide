@@ -1,0 +1,184 @@
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+
+    #magefan_help_container {position: fixed;right: 20px;bottom: 20px;z-index: 99999;}
+    #magefan_show_help {
+        cursor:pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #2F3045;
+    }
+    #magefan_show_help:hover {background: #504944;}
+
+    /* aug */
+    #magefan_aug {
+        position: absolute;
+        bottom: 75px;
+        right: 10px;
+        z-index: 1;
+        width: 520px;
+        max-width: 520px;
+        max-height: 70vh;
+        padding: 0;
+        background: #fff;
+        border-radius: 9px;
+        box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+    }
+    #magefan_aug .magefan-aug-header {
+        font-size: 24px;
+        font-weight: 600;
+        padding: 22px 22px 18px;
+        color: #141414;
+        position: relative;
+    }
+    #magefan_aug .magefan-aug-header .action-close {
+        width: 18px;
+        height: 18px;
+        line-height: 14px;
+        vertical-align: middle;
+        position: absolute;
+        top: 30px;
+        right: 24px;
+        z-index: 1;
+    }
+    #magefan_aug .magefan-aug-header .action-close:before {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        color: #98A2B3;
+        font-size: 18px;
+        line-height: 1;
+        vertical-align: middle;
+    }
+    #magefan_aug .magefan-aug-header .action-close > span {
+        border: 0;
+        clip: rect(0, 0, 0, 0);
+        height: 1px;margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;}
+
+    #magefan_aug .magefan-aug-content {padding: 0 22px;max-height: calc(70vh - 145px);overflow-y: auto;}
+    #magefan_aug .magefan-aug-content ul {margin: 0;padding: 0;list-style: none;}
+    #magefan_aug .magefan-aug-content ul li {
+        padding: 0;
+        margin-bottom: 14px;
+        color: #141414;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+    }
+    #magefan_aug .magefan-aug-content ul li .icon {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 12px;
+        float: left;
+        background: #fbefe9;
+        border-radius: 50%;
+    }
+    #magefan_aug .magefan-aug-content ul li a {color: #141414;font-size: 16px;line-height: 30px;font-weight: 600;}
+    #magefan_aug .magefan-aug-content ul li a:hover {color: #DA5D28;text-decoration: none;}
+
+    #magefan_aug .magefan-aug-footer {padding: 20px 22px;background: #F2F4F7;}
+    #magefan_aug .magefan-aug-footer .config_link {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 600;
+        color: #141414;
+    }
+    #magefan_aug .magefan-aug-footer .config_link:hover {text-decoration: none;color: #DA5D28;}
+    #magefan_aug .magefan-aug-footer .config_link .icon {
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        margin-right: 12px;
+        color: #b2b2b2;
+    }
+    #magefan_aug .magefan-aug-footer .config_link:hover .icon {color: #DA5D28;}
+
+    /* Animation */
+    #magefan_show_help {
+        -webkit-animation: rotate 30s linear;-moz-animation: rotate 30s linear;animation: rotate 30s linear;
+    }
+    @keyframes rotate {
+        0% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        10% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        20% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        30% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        40% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        50% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        60% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        70% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        80% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        90% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        100% {-webkit-transform: rotateY(-360deg);-o-transform: rotateY(-360deg);transform: rotateY(-360deg);
+        }
+    }
+    @-webkit-keyframes rotate {
+        0% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+
+        }
+        10% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        20% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        30% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        40% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        50% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        60% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        70% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        80% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        90% {
+            -webkit-transform: rotateY(0deg);-o-transform: rotateY(0deg);transform: rotateY(0deg);
+        }
+        100% {-webkit-transform: rotateY(-360deg);-o-transform: rotateY(-360deg);transform: rotateY(-360deg);
+        }
+    }
