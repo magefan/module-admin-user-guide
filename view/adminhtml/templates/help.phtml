@@ -24,9 +24,8 @@ if (!isset($escaper)) {
 <?php if ($pageHelp) { ?>
     <div id="magefan_help_container">
         <div title="<?= $escaper->escapeHtml(__('Admin Guide')) ?>" id="magefan_show_help">
-            <img
-                src="<?= $escaper->escapeUrl($block->getViewFileUrl('Magefan_AdminUserGuide::image/question.svg')) ?>"
-            />
+            <?php $questionPath = 'Magefan_AdminUserGuide::image/question.svg' ?>
+            <img src="<?= $escaper->escapeUrl($block->getViewFileUrl($questionPath)) ?>"/>
         </div>
         <div id="magefan_aug" style="display: none">
             <div class="magefan-aug-header">Admin Guide
@@ -40,8 +39,8 @@ if (!isset($escaper)) {
                         <?php foreach ($question['links'] as $link) { ?>
                             <li>
                                 <div class="icon">
-                                    <?php $linkSvg = $block->getViewFileUrl('Magefan_AdminUserGuide::image/link.svg') ?>
-                                    <img src="<?= $escaper->escapeUrl($linkSvg) ?>" />
+                                    <?php $linkPath = 'Magefan_AdminUserGuide::image/link.svg' ?>
+                                    <img src="<?= $escaper->escapeUrl($block->getViewFileUrl($linkPath)) ?>" />
                                 </div>
                                 <a
                                     title="<?= $escaper->escapeHtml(__($question['title'])); ?>"
@@ -67,8 +66,8 @@ if (!isset($escaper)) {
                     href="<?= $escaper->escapeHtml($configLink) ?>"
                 >
                     <span class="icon">
-                        <?php $settingSvg = $block->getViewFileUrl('Magefan_AdminUserGuide::image/setting.svg') ?>
-                        <img src="<?= $escaper->escapeUrl($settingSvg) ?>"/>
+                        <?php $settingPath = 'Magefan_AdminUserGuide::image/setting.svg' ?>
+                        <img src="<?= $escaper->escapeUrl($block->getViewFileUrl($settingPath)) ?>"/>
                     </span>
                     <span>Admin Guide Configuration</span>
                 </a>
