@@ -3,21 +3,22 @@
  * Copyright © Magefan (support@magefan.com). All rights reserved.
  * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
  */
+
+declare(strict_types=1);
+
 namespace Magefan\AdminUserGuide\Model;
 
+use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Filesystem;
 use Magento\Framework\App\CacheInterface;
 use Magento\Framework\HTTP\Client\Curl;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\App\Filesystem\DirectoryList;
 
-/**
- * Class XmlReader
- */
 class XmlReader
 {
 
-    const DATA_FILE_NAME = 'magefan/aug-data/knowledge-base.xml';
+    public const DATA_FILE_NAME = 'magefan/aug-data/knowledge-base.xml';
 
     /**
      * @var CacheInterface
@@ -58,8 +59,10 @@ class XmlReader
     }
 
     /**
+     * Get unserialized data
+     *
      * @return array|bool|float|int|mixed|string|null
-     * @throws \Magento\Framework\Exception\FileSystemException
+     * @throws FileSystemException
      */
     public function get()
     {
@@ -75,7 +78,9 @@ class XmlReader
     }
 
     /**
-     * @throws \Magento\Framework\Exception\FileSystemException
+     * Read file
+     *
+     * @throws FileSystemException
      */
     private function readFile()
     {
@@ -99,11 +104,13 @@ class XmlReader
                 $data[] = (array)$item;
             }
         }
-        $this->cache->save($this->json->serialize($data),'magefan_aug_data');
+        $this->cache->save($this->json->serialize($data), 'magefan_aug_data');
     }
 
     /**
-     * @throws \Magento\Framework\Exception\FileSystemException
+     *  Update file content
+     *
+     * @throws FileSystemException
      */
     public function update()
     {

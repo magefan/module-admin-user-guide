@@ -3,8 +3,12 @@
  * Copyright © Magefan (support@magefan.com). All rights reserved.
  * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
  */
+
+declare(strict_types=1);
+
 namespace Magefan\AdminUserGuide\Block\Adminhtml;
 
+use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\View\Element\Template;
 use Magefan\AdminUserGuide\Model\XmlReader;
 use Magefan\AdminUserGuide\Model\Config;
@@ -29,6 +33,7 @@ class Help extends \Magento\Framework\View\Element\Template
 
     /**
      * Help constructor.
+     *
      * @param Template\Context $context
      * @param XmlReader $xmlReader
      * @param Config $config
@@ -49,8 +54,10 @@ class Help extends \Magento\Framework\View\Element\Template
     }
 
     /**
+     * Get link ot the help page
+     *
      * @return array
-     * @throws \Magento\Framework\Exception\FileSystemException
+     * @throws FileSystemException
      */
     public function getPageHelp()
     {
@@ -59,64 +66,83 @@ class Help extends \Magento\Framework\View\Element\Template
             return $data;
         }
 
-        if ($this->config->isEnabled()) {
-            $guideData = $this->xmlReader->get();
+        if (!$this->config->isEnabled()) {
+            return $data;
+        }
 
-            $fullActionName = str_replace('_', '-', $this->getRequest()->getFullActionName());
-            $secondActionName = $fullActionName;
+        $guideData = $this->xmlReader->get();
 
-            if ('adminhtml-system-config-edit' == $secondActionName) {
-                $secondActionName .= '-section-' . $this->getRequest()->getParam('section');
-            }
+        $fullActionName = str_replace('_', '-', $this->getRequest()->getFullActionName());
+        $secondActionName = $fullActionName;
 
-            $data = [];
-            if ($guideData) {
-                foreach ($guideData as $item) {
-                    if (empty($item['class']) || empty($item['title'])) {
+        if ('adminhtml-system-config-edit' == $secondActionName) {
+            $secondActionName .= '-section-' . $this->getRequest()->getParam('section');
+        }
+
+        $data = [];
+        if ($guideData) {
+            foreach ($guideData as $item) {
+                if (empty($item['class']) || empty($item['title'])) {
+                    continue;
+                }
+
+                $classes = explode(' ', $item['class']);
+                if (in_array($fullActionName, $classes)
+                    || in_array($secondActionName, $classes)
+                ) {
+                    $links = $this->getLinks($item);
+
+                    if (!count($links)) {
                         continue;
                     }
 
-                    $classes = explode(' ', $item['class']);
-                    if (in_array($fullActionName, $classes)
-                        || in_array($secondActionName, $classes)
-                    ) {
-                        $links = [];
-                        for ($i = 0; $i <= count($item) - 2; $i++) {
-                            if ($i == 0) {
-                                if (isset($item['link'])) {
-                                    $links[] = $item['link'];
-                                }
-                                $i++;
-                            } else {
-                                if (isset($item['link' . $i])) {
-                                    $links[] = $item['link' . $i];
-                                }
-                            }
+                    foreach ($links as $klink => $link) {
+                        if (false !== strpos($link, 'magefan.com') &&
+                            false === strpos($link, 'utm_source')
+                        ) {
+                            $linkInfo = explode('#', $link);
+                            $linkInfo[0] .= (false !== strpos($linkInfo[0], '?')) ? '&' : '?';
+                            $linkInfo[0] .= 'utm_source=admin&utm_medium=admin-user-guide';
+                            $linkInfo[0] .= '&utm_campaign=admin-user-guide';
+                            $link = implode('#', $linkInfo);
+                            $links[$klink] = $link;
                         }
-
-                        if (!count($links)) {
-                            continue;
-                        }
-
-                        foreach ($links as $klink => $link) {
-                            if (false !== strpos($link, 'magefan.com') && false === strpos($link, 'utm_source')) {
-                                $linkInfo = explode('#', $link);
-                                $linkInfo[0] .= (false !== strpos($linkInfo[0], '?')) ? '&' : '?';
-                                $linkInfo[0] .= 'utm_source=admin&utm_medium=admin-user-guide&utm_campaign=admin-user-guide';
-                                $link = implode('#', $linkInfo);
-                                $links[$klink] = $link;
-                            }
-                        }
-
-                        $data[] = [
-                            'title' => $item['title'],
-                            'links' => $links
-                        ];
                     }
+
+                    $data[] = [
+                        'title' => $item['title'],
+                        'links' => $links
+                    ];
                 }
             }
-
         }
+
         return $data;
+    }
+
+    /**
+     * Get links from item
+     *
+     * @param array $item
+     * @return array
+     */
+    private function getLinks($item)
+    {
+        $links = [];
+        $itemsCount = count($item);
+        for ($i = 0; $i <= $itemsCount - 2; $i++) {
+            if ($i == 0) {
+                if (isset($item['link'])) {
+                    $links[] = $item['link'];
+                }
+                $i++;
+            } else {
+                if (isset($item['link' . $i])) {
+                    $links[] = $item['link' . $i];
+                }
+            }
+        }
+
+        return $links;
     }
 }

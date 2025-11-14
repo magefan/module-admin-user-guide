@@ -4,14 +4,13 @@
  * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
  */
 
+declare(strict_types=1);
+
 namespace Magefan\AdminUserGuide\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-/**
- * Class Config
- */
 class Config
 {
     /**
@@ -22,10 +21,11 @@ class Config
     /**
      * Extension enabled config path
      */
-    const XML_PATH_EXTENSION_ENABLED = 'mfadminuserguide/general/enabled';
+    public const XML_PATH_EXTENSION_ENABLED = 'mfadminuserguide/general/enabled';
 
     /**
      * Config constructor.
+     *
      * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
@@ -37,6 +37,7 @@ class Config
     /**
      * Retrieve true if blog module is enabled
      *
+     * @param mixed $storeId
      * @return bool
      */
     public function isEnabled($storeId = null)
@@ -46,8 +47,9 @@ class Config
 
     /**
      * Retrieve store config value
+     *
      * @param string $path
-     * @param null $storeId
+     * @param mixed $storeId
      * @return mixed
      */
     public function getConfig($path, $storeId = null)
