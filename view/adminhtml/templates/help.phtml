@@ -25,10 +25,19 @@ if (!isset($escaper)) {
     <div id="magefan_help_container">
         <div title="<?= $escaper->escapeHtml(__('Admin Guide')) ?>" id="magefan_show_help">
             <?php $questionPath = 'Magefan_AdminUserGuide::image/question.svg' ?>
-            <img src="<?= $escaper->escapeUrl($block->getViewFileUrl($questionPath)) ?>"/>
+            <img alt="Quesion" width="30" height="30"
+                 src="<?= $escaper->escapeUrl($block->getViewFileUrl($questionPath)) ?>"/>
         </div>
         <div id="magefan_aug" style="display: none">
-            <div class="magefan-aug-header">Admin Guide
+            <div class="magefan-aug-header">
+                <?php $linkPath = 'Magefan_AdminUserGuide::image/magefan.svg' ?>
+                <img class="mf-help-logo" alt="Magefan" width="30" height="30"
+                     src="<?= $escaper->escapeUrl($block->getViewFileUrl($linkPath)) ?>" />
+                <?= $escaper->escapeHtml(__('Admin Guide')) ?>
+                <a title="Magefan - Ecommerce solutions you can trust"
+                   href="https://magefan.com?utm_source=admin&utm_medium=admin-user-guide&utm_campaign=admin-user-guide"
+                   target="_blank" rel="nofollow noopener" style="color: #98A2B3;"
+                > by Magefan</a>
                 <button class="action-close" type="button" title="<?= $escaper->escapeHtml(__('Close')) ?>">
                     <span><?= $escaper->escapeHtml(__('Close')) ?></span>
                 </button>
@@ -40,7 +49,8 @@ if (!isset($escaper)) {
                             <li>
                                 <div class="icon">
                                     <?php $linkPath = 'Magefan_AdminUserGuide::image/link.svg' ?>
-                                    <img src="<?= $escaper->escapeUrl($block->getViewFileUrl($linkPath)) ?>" />
+                                    <img alt="Link" width="16" height="16"
+                                         src="<?= $escaper->escapeUrl($block->getViewFileUrl($linkPath)) ?>" />
                                 </div>
                                 <a
                                     title="<?= $escaper->escapeHtml(__($question['title'])); ?>"
@@ -67,7 +77,8 @@ if (!isset($escaper)) {
                 >
                     <span class="icon">
                         <?php $settingPath = 'Magefan_AdminUserGuide::image/setting.svg' ?>
-                        <img src="<?= $escaper->escapeUrl($block->getViewFileUrl($settingPath)) ?>"/>
+                        <img alt="Settings" width="32" height="32"
+                             src="<?= $escaper->escapeUrl($block->getViewFileUrl($settingPath)) ?>"/>
                     </span>
                     <span>Admin Guide Configuration</span>
                 </a>

@@ -12,9 +12,9 @@
         width: 48px;
         height: 48px;
         border-radius: 50%;
-        background: #2F3045;
+        background: #504944;
     }
-    #magefan_show_help:hover {background: #504944;}
+    #magefan_show_help:hover {background: #2F3045;}
 
     /* aug */
     #magefan_aug {
@@ -37,6 +37,13 @@
         padding: 22px 22px 18px;
         color: #141414;
         position: relative;
+    }
+    .magefan-aug-header .mf-help-logo {
+        display: inline-block;
+        vertical-align: middle;
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
     }
     #magefan_aug .magefan-aug-header .action-close {
         width: 18px;
