@@ -11,7 +11,7 @@ namespace Magefan\AdminUserGuide\Model;
 use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Filesystem;
 use Magento\Framework\App\CacheInterface;
-use Magento\Framework\HTTP\Client\Curl;
+use Magento\Framework\HTTP\Client\CurlFactory;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\App\Filesystem\DirectoryList;
 
@@ -19,6 +19,26 @@ class XmlReader
 {
 
     public const DATA_FILE_NAME = 'magefan/aug-data/knowledge-base.xml';
+
+    /**
+     * Cache key of the flag that prevents remote requests after a failed one
+     */
+    public const RETRY_CACHE_KEY = 'magefan_aug_data_retry';
+
+    /**
+     * Delay before the next attempt after a failed request
+     */
+    public const RETRY_LIFETIME = 3600;
+
+    /**
+     * Max time in seconds to establish connection
+     */
+    public const CONNECT_TIMEOUT = 2;
+
+    /**
+     * Max time in seconds for the whole request
+     */
+    public const TIMEOUT = 5;
 
     /**
      * @var CacheInterface
@@ -36,26 +56,26 @@ class XmlReader
     private $json;
 
     /**
-     * @var Curl
+     * @var CurlFactory
      */
-    private $curl;
+    private $curlFactory;
 
     /**
      * @param CacheInterface $cache
      * @param Filesystem $filesystem
      * @param Json $json
-     * @param Curl $curl
+     * @param CurlFactory $curlFactory
      */
     public function __construct(
         CacheInterface $cache,
         Filesystem $filesystem,
         Json $json,
-        Curl $curl
+        CurlFactory $curlFactory
     ) {
         $this->cache = $cache;
         $this->filesystem = $filesystem;
         $this->json = $json;
-        $this->curl = $curl;
+        $this->curlFactory = $curlFactory;
     }
 
     /**
@@ -85,7 +105,7 @@ class XmlReader
     private function readFile()
     {
         $directoryRead = $this->filesystem->getDirectoryRead(DirectoryList::VAR_DIR);
-        if (!$directoryRead->isExist(self::DATA_FILE_NAME)) {
+        if (!$directoryRead->isExist(self::DATA_FILE_NAME) && !$this->cache->load(self::RETRY_CACHE_KEY)) {
             $this->update();
         }
         if (!$directoryRead->isExist(self::DATA_FILE_NAME)) {
@@ -116,14 +136,35 @@ class XmlReader
     {
         $fileUrl = 'https://' . 'mage' . 'fan.com' .'/media/knowledge-base.xml';
         try {
-            $this->curl->get($fileUrl);
-            $contents = $this->curl->getBody();
+            $curl = $this->curlFactory->create();
+            $curl->setTimeout(self::TIMEOUT);
+            $curl->setOption(CURLOPT_CONNECTTIMEOUT, self::CONNECT_TIMEOUT);
+            $curl->get($fileUrl);
+            $contents = (200 == $curl->getStatus()) ? $curl->getBody() : null;
         } catch (\Exception $e) {
             $contents = null;
         }
-        if ($contents) {
+        if ($contents && $this->isValidXml($contents)) {
             $media = $this->filesystem->getDirectoryWrite(DirectoryList::VAR_DIR);
             $media->writeFile(self::DATA_FILE_NAME, $contents);
+        } else {
+            $this->cache->save('1', self::RETRY_CACHE_KEY, [], self::RETRY_LIFETIME);
         }
+    }
+
+    /**
+     * Check if content is valid xml, to not overwrite existing file with error page
+     *
+     * @param string $contents
+     * @return bool
+     */
+    private function isValidXml(string $contents): bool
+    {
+        $useErrors = libxml_use_internal_errors(true);
+        $xml = simplexml_load_string($contents);
+        libxml_clear_errors();
+        libxml_use_internal_errors($useErrors);
+
+        return false !== $xml;
     }
 }
