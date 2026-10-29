@@ -33,7 +33,7 @@ class XmlReader
     /**
      * Max time in seconds to establish connection
      */
-    public const CONNECT_TIMEOUT = 2;
+    public const CONNECT_TIMEOUT = 3;
 
     /**
      * Max time in seconds for the whole request
