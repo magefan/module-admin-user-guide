@@ -9,6 +9,9 @@
             "Magefan\\AdminUserGuide\\": ""
         }
     },
+    "require": {
+        "magefan/module-community": ">=2.2.15"
+    },
     "require-dev": {
         "magento/magento-coding-standard": "^41",
         "phpstan/phpstan": "^2.1",
